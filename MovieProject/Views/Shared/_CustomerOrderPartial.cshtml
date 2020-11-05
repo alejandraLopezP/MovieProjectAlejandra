@@ -1,0 +1,37 @@
+﻿@using MovieProject.ViewModels
+@model List<OrderDetailCustomerViewModel>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><strong>Order Number</strong></th>
+                    <th><strong>Date</strong></th>
+                    <th><strong>Movies</strong></th>
+                    <th><strong>Price</strong></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var orderDetail in Model)
+                {
+                    <tr>
+                        <td>@orderDetail.Order.Id</td>
+                        <td>@orderDetail.Order.OrderDate</td>
+                        <td>
+                            @foreach (var orderrow in orderDetail.OrderRow)
+                            {
+                                <p>
+                                    @orderrow.Movie.Title
+                                </p>
+                            }
+                        </td>
+                        <td>$@orderDetail.Order.TotalPrice</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

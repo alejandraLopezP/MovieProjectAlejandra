@@ -1,0 +1,36 @@
+﻿@using MovieProject.Models.DataBase
+@using MovieProject.ViewModels
+
+@{
+    ViewBag.Title = "CustomerOrder";
+}
+
+@{
+    var customer = ViewBag.Customer as Customer;
+}
+
+<h2>Order by Customer</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>
+                <strong>
+                    @($"{customer.FirstName} {customer.LastName}")
+                </strong>
+            </h4>
+            <p>
+                @customer.PhoneNo
+            </p>
+            <p>
+                @customer.EmailAddress
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    @Html.Partial("_CustomerOrderPartial", ViewBag.OrderWithDetails as List<OrderDetailCustomerViewModel>)
+
+</div>

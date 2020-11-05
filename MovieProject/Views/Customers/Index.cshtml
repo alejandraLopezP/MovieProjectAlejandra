@@ -1,0 +1,77 @@
+﻿@model MovieProject.Models.OrderCheckoutViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>
+                <strong>
+                    @($"{Model.Customer.FirstName} {Model.Customer.LastName}")
+                </strong>
+            </h4>
+            <p>
+                @Model.Customer.PhoneNo
+            </p>
+            <p>
+                @Model.Customer.EmailAddress
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h4><strong>Billing Addrress:</strong></h4>
+            <p>@Model.Customer.BillingAddress</p>
+            <p>@Model.Customer.BillingZip</p>
+            <p>@Model.Customer.BillingCity</p>
+        </div>
+
+        <div class="col-md-4">
+            <h4><strong>Delivery Addrress:</strong></h4>
+            <p>@Model.Customer.DeliveryAddress</p>
+            <p>@Model.Customer.DeliveryZip</p>
+            <p>@Model.Customer.DeliveryCity</p>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Qty</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var movie in Model.Movies)
+                    {
+                    <tr>
+                        <td>@movie.Count</td>
+                        <td>@movie.Movy.Title</td>
+                        <td>$@movie.Movy.Price</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    
+</div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4><strong>Total:</strong>$@ViewBag.Total</h4>
+        </div>
+        <div class="col-md-6 text-right">
+            @using (Html.BeginForm("CompleteOrder", "Order", FormMethod.Post))
+            {
+                <button type="submit" class="btn btn-primary">
+                    Complete the order
+                </button>
+            }
+        </div>
+    </div>
+</div>

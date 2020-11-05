@@ -1,0 +1,94 @@
+﻿@using MovieProject.Models.DataBase
+
+@{
+    ViewBag.Title = "Users";
+}
+
+@{ 
+    IEnumerable<ApplicationUser> members = ViewBag.Members as IEnumerable<ApplicationUser>;
+    List<ApplicationUser> nonMembers = ViewBag.NonMembers as List<ApplicationUser>;
+}
+
+<h2>Users in Role: @ViewBag.RoleName</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Add to @ViewBag.Role.Name
+    </div>
+    <table class="table">
+        @if(nonMembers.Count == 0)
+        {
+            <tr>
+                <td colspan="2">
+                    All Users Are Members
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>User ID</td>
+                <td>Add To Role</td>
+            </tr>
+            foreach(var user in nonMembers)
+            {
+                <tr>
+                    <td>
+                        @user.UserName
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("AddToRole", "Role", new {
+                            userId = user.Id, id = ViewBag.Role.Id, rolename = ViewBag.Role.Name
+                        }))
+                        {
+                            <input type="submit" class="btn btn-primary btn-xs" value="Add" />
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Remove from @ViewBag.RoleName
+    </div>
+    <table class="table">
+        @if (members.Count() == 0)
+        {
+            <tr>
+                <td colspan="2">
+                    No Users Are Members
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>User ID</td>
+                <td>Remove From Role</td>
+            </tr>
+            foreach (var user in members)
+            {
+                <tr>
+                    <td>
+                        @user.UserName
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("RemoveToRole", "Role", new
+                        {
+                            userId = user.Id,
+                            id = ViewBag.Role.Id,
+                            rolename = ViewBag.Role.Name
+                        }))
+                        {
+                            <input type="submit" class="btn btn-primary btn-xs" value="Remove" />
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+

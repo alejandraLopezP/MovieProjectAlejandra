@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h2>Roles</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="3"><b>Current Registered Roles</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in ViewBag.Roles)
+        {
+        <tr>
+            <td>
+                @role.Id
+            </td>
+            <td>
+                @role.Name
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", "Role", new { id = role.Id }))
+                {
+                    @Html.ActionLink("Users", "Users", new { id = role.Id }, new { @class = "btn btn-primary btn-xs" })
+
+                    <button class="btn btn-danger btn-xs" type="submit">
+                        Delete
+                    </button>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+
+    @if (ViewBag.Flg == 1)
+    {
+        <tr>@Html.ActionLink("Add new Role", "Create", "Role")</tr>
+    }
+</table>
+
+

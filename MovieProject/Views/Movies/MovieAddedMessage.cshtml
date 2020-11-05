@@ -1,0 +1,19 @@
+﻿@model List<MovieProject.Models.DataBase.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container">
+    @{
+        if (TempData["MovieAdded"] != null)
+        {
+            <p>
+                @TempData["MovieAdded"].ToString()
+            </p>
+        }
+    }
+
+    </div>
+

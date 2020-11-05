@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<title>@ViewBag.Title - My ASP.NET Application</title>*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container" >
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/Home/Index">
+                    <img src="~/Images/logo_OK.png" width="100" height="100" class="img-responsive" />
+                </a>
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"  style="padding-top:30px">
+                    <li>@Html.ActionLink("HOME", "Index", "Movies")</li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("ADD MOVIE", "Create", "Movies")</li>
+                        <li>@Html.ActionLink("ADD CUSTOMER", "Create", "Customers")</li>
+                        <li>@Html.ActionLink("HISTORY ORDER", "CustomerOrder", "Customers")</li>
+                        <li>@Html.ActionLink("ROLES", "Index", "Role")</li>
+                    }
+                    <li>@Html.ActionLink("MOVIE", "MovieGeneral", "Movies")</li>
+                    
+                    <li>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                        @using (Html.BeginForm("doSearch", "Search", FormMethod.Post, new { id = "searchForm", @class = "example" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        <!-- <form class="example" action="action_page.php" style="align-content:center">-->
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        <!-- </form> -->
+                        }
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    @{
+        var pixeles = "40px";
+        if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            pixeles = "100px";
+        }
+     }
+
+    <div class="container body-content" style="padding-top:@pixeles">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Movie Store</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

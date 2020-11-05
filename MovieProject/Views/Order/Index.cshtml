@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>OderPerCustomer</h2>
+
+<div class="form-horizontal">
+    <h4>Customer to show order</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("Insert email customer:")
+
+        @Html.Editor("EmailCustomer")
+
+        <p>
+            @Html.ActionLink("Search order for this customer", "CustomerOrder","Order", null, new { onclick = "this.href += '/' + document.getElementById('EmailCustomer').value + '/';" })
+
+
+
+        </p>
+
+    </div>
+</div>
+

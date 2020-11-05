@@ -1,0 +1,72 @@
+﻿@model MovieProject.Models.DataBase.Movie
+
+    <div class="col-md-6 movie-item">
+        @using (Html.BeginForm("AddToCart", "Movies", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => Model.Id)
+            @Html.Hidden("Page", "Index")
+
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="#">
+                        <img class="img-responsive" src="@Model.ImageUrl">
+                        
+                    </a>
+                </div>
+                <div class="col-md-7">
+                    <h4 class="media-heading text-left"><strong>@Model.Title</strong></h4>
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <strong>Director</strong>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            @Model.Director
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <strong>Release Year</strong>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            @Model.ReleaseYear
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <strong>Genre</strong>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            @Model.Genre
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <strong>Price</strong>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            @Model.Price
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-4">
+                            <input type="submit" value="Add to cart" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    
+        }
+    <div class="clearfix"></div>
+</div>
+
+@*
+        {
+
+            if (Session[Model.Title] != null)
+                {
+                    <div><h3>Count in cart: @Session[Model.Title]</h3></div>
+                }
+
+    }*@

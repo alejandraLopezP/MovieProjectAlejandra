@@ -1,0 +1,40 @@
+﻿@model MovieProject.Models.DataBase.Customer
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>
+                <strong>
+                    @($"{Model.FirstName} {Model.LastName}")
+                </strong>
+            </h4>
+            <p>
+                
+                @Model.PhoneNo
+            </p>
+            <p>
+                @Model.EmailAddress
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h4><strong>Billing Addrress:</strong></h4>
+            <p>@Model.BillingAddress</p>
+            <p>@Model.BillingZip</p>
+            <p>@Model.BillingCity</p>
+        </div>
+
+        <div class="col-md-4">
+            <h4><strong>Delivery Addrress:</strong></h4>
+            <p>@Model.DeliveryAddress</p>
+            <p>@Model.DeliveryZip</p>
+            <p>@Model.DeliveryCity</p>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+

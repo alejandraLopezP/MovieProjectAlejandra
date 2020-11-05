@@ -1,0 +1,102 @@
+﻿@model MovieProject.Models.MoviesGeneralViewModel
+
+@{
+    ViewBag.Title = "MoviesGeneral";
+}
+
+<style>
+    .movie-item {
+        border-radius: 5px;
+        border: 2px solid;
+        border-color: white;
+        background-color: antiquewhite;
+        margin-bottom: 20px;
+        padding: 20px 10px;
+    }
+
+        .movie-item img {
+            width: 80%;
+        }
+
+    .rubrik {
+        background-color: gainsboro;
+        font-size: medium;
+    }
+</style>
+
+
+<hr />
+
+<div class="container">
+    <div class="text-center"><h3><b>The most POPULAR movies</b></h3></div>
+
+
+    <div class="row">
+        @foreach (var item in Model.MostPopularMovie)
+            {
+            @Html.Partial("_MoviePartial", item);
+            }
+    </div>
+</div>
+
+
+<hr />
+<div class="container">
+    <div class="text-center"><h3><b>The 5 Newest movies</b></h3></div>
+
+    <div class="row">
+        @foreach (var item in Model.NewestMovie)
+        {
+            @Html.Partial("_MoviePartial", item);
+        }
+    </div>
+</div>
+
+<hr />
+
+<div class="container">
+    <div class="text-center"><h3><strong>The 5 Oldest movies</strong></h3></div>
+
+    <div class="row">
+        @foreach (var item in Model.OldestMovie)
+        {
+            @Html.Partial("_MoviePartial", item);
+        }
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="text-center"><h3><strong>The 5 Cheapest movies</strong></h3></div>
+
+    <div class="row">
+        @foreach (var item in Model.CheapestMovie)
+        {
+            @Html.Partial("_MoviePartial", item);
+        }
+    </div>
+</div>
+
+<hr />
+<div class="text-center"><h3><strong>The most expensive order</strong></h3></div>
+<div class="container" style="background-color:antiquewhite">
+    
+
+    @*<div class="col-md-12">*@
+        <div class="row">
+            <div class="col-md-2">
+                <h3><span class="glyphicon glyphicon-user"><strong>Customer:</strong></span></h3>
+            </div>
+            <div class="col-md-3" style="text-align:left">
+                <h3>@($"{Model.ExpensiveOrder.Customer.FirstName} {Model.ExpensiveOrder.Customer.LastName}")</h3>
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <h3><strong>Order price:</strong></h3>
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <h3><span class="glyphicon glyphicon-usd">@Model.ExpensiveOrder.TotalPrice</span></h3>
+            </div>
+        </div>
+        </div>
+@*</div>*@
+
+

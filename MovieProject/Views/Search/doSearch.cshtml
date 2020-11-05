@@ -1,0 +1,38 @@
+﻿@model List<MovieProject.Models.DataBase.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .movie-item {
+        border-radius: 5px;
+        border: 2px solid;
+        border-color: white;
+        background-color: antiquewhite;
+        margin-bottom: 20px;
+        padding: 20px 10px;
+    }
+
+        .movie-item img {
+            width: 80%;
+        }
+</style>
+
+
+
+<div class="row">
+    @if (ViewBag.mensaje != null)
+    {
+        foreach (var movie in Model)
+        {
+            @Html.Partial("_MoviePartial", movie)
+        }
+    }
+    else
+    {
+        <h4>NO MATCHES WERE FOUND</h4>
+    }
+
+
+</div>
